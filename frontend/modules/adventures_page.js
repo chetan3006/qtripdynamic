@@ -47,9 +47,9 @@ function addAdventureToDOM(adventures) {
     
     let div = document.createElement("div");
     div.setAttribute("class", "col-6 col-xs-6 col-sm-6 col-xl-3")
-    div.setAttribute("id",`${adventures[i].id}`)
+   //div.setAttribute("id",`${adventures[i].id}`)
     let text = `
-        <a href="detail/?adventure=${adventures[i].id}" id"="${adventures[i].id}">
+        <a href="detail/?adventure=${adventures[i].id}" id="${adventures[i].id}">
           <div class="activity-card d-flex flex-column border-dark">
           <div class="category-banner">${adventures[i].category}</div>
 
