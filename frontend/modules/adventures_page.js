@@ -5,6 +5,12 @@ import config from "../conf/index.js";
 function getCityFromURL(search) {
   // TODO: MODULE_ADVENTURES
   // 1. Extract the city id from the URL's Query Param and return it
+  const p = new URLSearchParams(search);
+  let result= p.get('city');
+ // console.log(Array.from(p).length)
+ // console.log(p);
+  return result;
+  
 
 }
 
@@ -12,13 +18,68 @@ function getCityFromURL(search) {
 async function fetchAdventures(city) {
   // TODO: MODULE_ADVENTURES
   // 1. Fetch adventures using the Backend API and return the data
+  try {
+    
+    let adventures = await fetch(config.backendEndpoint + `/adventures?city=${city}`);
+    adventures = await adventures.json();
+    //cities = cities[id];
+   // throw new Error(null);
+    //console.log(adventures);
+    return adventures;
+  }
+  catch {
+    return null;
+  }
 
 }
 
 //Implementation of DOM manipulation to add adventures for the given city from list of adventures
 function addAdventureToDOM(adventures) {
+  //console.log(adventures[1].id);
   // TODO: MODULE_ADVENTURES
   // 1. Populate the Adventure Cards and insert those details into the DOM
+  //let container = document.createElement("container");
+  //container.setAttribute("class","")
+  let parent = document.getElementById("data");
+  for (let i in adventures) {
+    //console.log(adventures[i][id]);
+    
+    
+    let div = document.createElement("div");
+    div.setAttribute("class", "col-6 col-xs-6 col-sm-6 col-xl-3")
+    div.setAttribute("id",`${adventures[i].id}`)
+    let text = `
+        <a href="detail/?adventure=${adventures[i].id}" id"="${adventures[i].id}">
+          <div class="activity-card d-flex flex-column border-dark">
+          <div class="category-banner">${adventures[i].category}</div>
+
+            <img src=${adventures[i].image} class="img-fluid img-responsive">
+            <div
+              class=" d-flex  align-items-stretch justify-content-between"
+            >
+              <h5>${adventures[i].name}</h5>
+              <h5>₹${adventures[i].costPerHead}</h5>
+            </div>
+            <div
+              class=" d-flex align-items-stretch justify-content-between"
+            >
+              <h5>Duration</h5>
+              <h5>${adventures[i].duration} hours</h5>
+          </div>
+            
+        </div>
+        </a>
+        
+
+    `;
+    div.innerHTML = text;
+    parent.appendChild(div);
+
+
+  }
+  
+ 
+
 
 }
 

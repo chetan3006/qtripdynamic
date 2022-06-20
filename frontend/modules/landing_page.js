@@ -42,7 +42,7 @@ function addCityToDOM(id, city, description, image) {
   tile.setAttribute("class", "col-xs-12 col-sm-6 col-xl-3 tile")
   tile.setAttribute("id", `${id}`);
   let htmlcontent = `
-  <a  href="/pages/adventures/${id}.html" id=${id}>
+  <a href="pages/adventures/?city=${id}" id="${id}">
   <img class="img-fluid d-flex justify-content-center align-items-center" src="${image}"/></a>
   <h2 class="tile-text">${city}<br />${description}</h2>
   `
