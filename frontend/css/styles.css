@@ -62,10 +62,7 @@ footer {
   height: 100%;
   border-radius: 8px;
   -webkit-transition: 0.2s all;
-<<<<<<< HEAD
-  background-size: contain;
-=======
->>>>>>> ed0bb7c6b95e84a472e4ae466eadb60bb0449454
+
   /* -webkit-filter: brightness(70%); */
 }
 .tile img:hover {
