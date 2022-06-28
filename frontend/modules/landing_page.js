@@ -2,7 +2,6 @@ import config from "../conf/index.js";
 
 async function init() {
   //Fetches list of all cities along with their images and description
-
   let cities = await fetchCities()
   
   console.log("From Init");
@@ -57,6 +56,5 @@ function addCityToDOM(id, city, description, image) {
 }
 //cd ..
 //addCityToDOM("london", "London", "London", "London");
-
 
 export { init, fetchCities, addCityToDOM };
