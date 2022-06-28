@@ -149,9 +149,7 @@ let filteredList = [];
   else if (filters["duration"].length > 0) {
     let choice = filters["duration"].split("-");
     filteredList = filterByDuration(
-      list,
-      parseInt(choice[0]),
-      parseInt(choice[1])
+      list,choice[0],choice[1]
     );
   }
 
@@ -162,6 +160,7 @@ let filteredList = [];
   else {
     filteredList = list;
   }
+  console.log(typeof (filteredList));
   return filteredList;
 
   // Place holder for functionality to work in the Stubs
