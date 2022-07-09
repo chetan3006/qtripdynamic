@@ -110,7 +110,6 @@ describe("Adventure Page Tests", function () {
     );
   });
 
-
   it("filterByDuration() - Returns an array of adventures, filtered by duration", function () {
     const expected = [
       {
