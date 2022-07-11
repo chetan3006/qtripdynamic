@@ -1,28 +1,52 @@
+//import { URLSearchParams } from "url";
 import config from "../conf/index.js";
 
 //Implementation to extract adventure ID from query params
 function getAdventureIdFromURL(search) {
   // TODO: MODULE_ADVENTURE_DETAILS
   // 1. Get the Adventure Id from the URL
-
+ // console.log(search);
+  const adventureid = new URLSearchParams(search);
+  let result = adventureid.get('adventure');
+  console.log(result);
 
   // Place holder for functionality to work in the Stubs
-  return null;
+  return result;
 }
 //Implementation of fetch call with a paramterized input based on adventure ID
 async function fetchAdventureDetails(adventureId) {
   // TODO: MODULE_ADVENTURE_DETAILS
   // 1. Fetch the details of the adventure by making an API call
-
+  try {
+    let adventuredetails = await fetch(config.backendEndpoint + `/adventures/detail?adventure=${adventureId}`);
+    let result = await adventuredetails.json();
+    return result;
+  }
+  catch {
+    return null;
+    
+  }
 
   // Place holder for functionality to work in the Stubs
-  return null;
+ // return null;
 }
 
 //Implementation of DOM manipulation to add adventure details to DOM
 function addAdventureDetailsToDOM(adventure) {
   // TODO: MODULE_ADVENTURE_DETAILS
   // 1. Add the details of the adventure to the HTML DOM
+  document.getElementById("adventure-name").innerHTML = `${adventure.name}`;
+  document.getElementById("adventure-subtitle").innerHTML = `${adventure.subtitle}`;
+  document.getElementById("adventure-content").innerHTML = `${adventure.content}`;
+  let imagediv = document.getElementById("photo-gallery");
+
+  adventure.images.map((image) => {
+    let img = document.createElement("img");
+    img.setAttribute("src", `${image}`);
+    img.setAttribute("class", "img-fluid activity-card-image");
+    imagediv.append(img);
+  })
+
 
 }
 
@@ -30,6 +54,37 @@ function addAdventureDetailsToDOM(adventure) {
 function addBootstrapPhotoGallery(images) {
   // TODO: MODULE_ADVENTURE_DETAILS
   // 1. Add the bootstrap carousel to show the Adventure images
+  let carousel = document.getElementById("photo-gallery");
+  carousel.innerHTML=`<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true" >
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner" id="image-content">
+    
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>`
+  images.map((ele, i) => {
+    let parentcontainer = document.getElementById("image-content");
+    let itemelement=document.createElement("div");
+    i == 0 ? itemelement.setAttribute("class", "carousel-item active") : itemelement.setAttribute("class", "carousel-item");
+    itemelement.innerHTML = `
+    <img src=${ele} style="width:100%;height:80vh;object-fit:cover">
+    `;
+    parentcontainer.append(itemelement);
+
+
+  
+})
 
 }
 
