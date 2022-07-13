@@ -42,10 +42,11 @@ function addCityToDOM(id, city, description, image) {
 
   let tile = document.createElement("div")//.className = "col-xs-12 col-sm-6 col-xl-3 tile";
   tile.setAttribute("class", "col-xs-12 col-sm-6 col-xl-3 tile")
+  tile.setAttribute("style","max-height:100%")
   tile.setAttribute("id", `${id}`);
   let htmlcontent = `
   <a href="pages/adventures/?city=${id}" id="${id}">
-  <img class="img-fluid d-flex justify-content-center align-items-center" src="${image}"/></a>
+  <img class="img-fluid d-flex justify-content-center align-items-center img-responsive" src="${image}" style=" max-height:100vh;object-fit:contain"/></a>
   <h2 class="tile-text">${city}<br />${description}</h2>
   `
   tile.innerHTML = htmlcontent;
